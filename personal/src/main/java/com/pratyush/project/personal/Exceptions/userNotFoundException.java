@@ -1,4 +1,4 @@
-package com.pratyush.project.personal.DaoService;
+package com.pratyush.project.personal.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
