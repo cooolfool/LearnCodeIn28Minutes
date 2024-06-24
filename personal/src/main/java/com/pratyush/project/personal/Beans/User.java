@@ -2,10 +2,16 @@ package com.pratyush.project.personal.Beans;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 public class User {
 
 	private Integer id;
+	
+	@Size(min=2, message = "Name should be atleast 2 characters")
 	private String name;
+	@Past(message =  "DOB should be of past date")
 	private LocalDate dob;
 	public Integer getId() {
 		return id;

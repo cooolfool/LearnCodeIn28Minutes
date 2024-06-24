@@ -3,11 +3,12 @@ package com.pratyush.project.personal.DaoService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
 import com.pratyush.project.personal.Beans.User;
+
 
 @Component
 public class UserDaoService {
@@ -26,15 +27,9 @@ public class UserDaoService {
 		return userList;
 	}
 	
-	public Optional<User> find(Integer id) {
-		return Optional.of(userList.stream()
-        .filter(u -> u.getId().equals(id))
-        .findFirst().orElse(null));
-		
-//		if(user==null)
-//			throw new userNotFoundException("id :"+ id);
-//		
-//		return user;	
+	public User find(Integer id) {
+         Predicate<? super User> predicate = user->user.getId().equals(id);
+         return userList.stream().filter(user->user.getId().equals(id)).findFirst().orElse(null);
 		
 	}
 	
@@ -42,6 +37,12 @@ public class UserDaoService {
 		user.setId(++userCount);
 		userList.add(user);
 		return user;
+	}
+	
+	public void delete(Integer id) {
+        Predicate<? super User> predicate = user->user.getId().equals(id);
+        userList.remove(predicate);
+		
 	}
 	
 }
